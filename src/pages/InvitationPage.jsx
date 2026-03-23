@@ -56,39 +56,6 @@ const staggerContainer = {
   }
 };
 
-const pageTransitionVariants = {
-  initial: {
-    opacity: 0,
-    rotateY: 90,
-    scale: 0.9,
-    filter: "blur(10px)",
-  },
-  animate: {
-    opacity: 1,
-    rotateY: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 1.2, ease: [0.6, -0.05, 0.01, 0.99] }
-  },
-  exit: {
-    opacity: 0,
-    rotateY: -90,
-    scale: 0.9,
-    filter: "blur(10px)",
-    transition: { duration: 1.2, ease: [0.6, -0.05, 0.01, 0.99] }
-  }
-};
-
-const coverTransitionVariants = {
-  exit: {
-    opacity: 0,
-    rotateY: 90,
-    scale: 1.1,
-    filter: "blur(10px)",
-    transition: { duration: 1.2, ease: [0.6, -0.05, 0.01, 0.99] }
-  }
-};
-
 // Reusable Section wrapper with elegant fade-in up
 const Section = ({ children, className = "", id = "", useStagger = false }) => {
   if (useStagger) {
@@ -219,19 +186,12 @@ export default function InvitationPage() {
 
   if (!config) return null;
 
-  return (
-    <div style={{ perspective: "1500px", overflowX: "hidden", width: "100%", minHeight: "100vh" }}>
-      <AnimatePresence mode="wait">
-        {!isOpen ? (
-          // Cover Page (Locked Scroll)
-          <motion.div
-            key="cover"
-            variants={coverTransitionVariants}
-            exit="exit"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-dark-green text-cream min-h-screen touch-none bg-cover bg-center origin-left"
-            style={{ backgroundImage: `url('${config.coverImage || "https://www.transparenttextures.com/patterns/arabesque.png"}')` }}
-          >
-            <div className="absolute inset-0 bg-dark-green/70 mix-blend-multiply"></div>
+  if (!isOpen) {
+    // Cover Page (Locked Scroll)
+    const coverBg = config.coverImage || "https://www.transparenttextures.com/patterns/arabesque.png";
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-dark-green text-cream min-h-screen touch-none bg-cover bg-center" style={{ backgroundImage: `url('${coverBg}')` }}>
+        <div className="absolute inset-0 bg-dark-green/70 mix-blend-multiply"></div>
         <div className="text-center p-8 max-w-lg mx-auto bg-dark-green/80 backdrop-blur-md shadow-2xl rounded-[3rem] border border-gold/30 z-10 relative overflow-hidden">
           <CornerMotif position="top-left" className="text-gold/60 pointer-events-none w-32 h-32" />
           <CornerMotif position="bottom-right" className="text-gold/60 pointer-events-none w-32 h-32" />
@@ -260,24 +220,20 @@ export default function InvitationPage() {
               className="px-8 py-3 bg-gold text-white font-poppins font-medium rounded-full shadow-[0_0_15px_rgba(201,168,76,0.4)] transition"
             >
               {t('openInvitation')}
-              </motion.button>
-            </motion.div>
-          </div>
-        </motion.div>
-        ) : (
-          <motion.div
-            key="main"
-            variants={pageTransitionVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="bg-cream text-gray-800 min-h-screen flex flex-col items-center overflow-x-hidden pt-16 origin-right"
-          >
-            <motion.div
-              className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold via-[#e6cf8b] to-gold z-[100] transform origin-left shadow-[0_2px_10px_rgba(201,168,76,0.3)]"
-              style={{ scaleX }}
-            />
-            <MusicToggle src={config.musicUrl} />
+            </motion.button>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-cream text-gray-800 min-h-screen flex flex-col items-center overflow-x-hidden pt-16">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold via-[#e6cf8b] to-gold z-[100] transform origin-left shadow-[0_2px_10px_rgba(201,168,76,0.3)]"
+        style={{ scaleX }}
+      />
+      <MusicToggle src={config.musicUrl} />
       
       {/* Language Toggle */}
       <div className="fixed top-20 right-4 z-50 flex items-center bg-white/80 backdrop-blur-md rounded-full shadow-lg border-2 border-gold p-1">
@@ -627,9 +583,6 @@ export default function InvitationPage() {
           <p className="text-gold opacity-60 font-poppins text-xs tracking-widest uppercase">&copy; {new Date().getFullYear()} Build with Love. All Rights Reserved.</p>
         </div>
       </footer>
-    </motion.div>
-    )}
-    </AnimatePresence>
     </div>
   );
 }

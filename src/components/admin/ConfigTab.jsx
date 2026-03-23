@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaSave } from 'react-icons/fa';
 import ImageUploadAndCrop from './ImageUploadAndCrop';
+import AudioUpload from './AudioUpload';
 
 export default function ConfigTab({ formData, handleChange, handleSave, isSaved }) {
   return (
@@ -206,8 +207,11 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
         </div>
         
         <div className="mt-4">
-          <label className="block text-sm text-gray-600 mb-1">URL Musik Latar (MP3)</label>
-          <input type="text" name="musicUrl" value={formData.musicUrl || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" />
+          <label className="block text-sm text-gray-600 mb-1">URL Musik Latar (MP3) - Upload File</label>
+          <div className="mb-2">
+            <AudioUpload onUploadSuccess={(url) => handleChange({ target: { name: 'musicUrl', value: url } })} />
+          </div>
+          <input type="text" name="musicUrl" value={formData.musicUrl || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none placeholder-gray-300" placeholder="https://... atau gunakan Upload File" />
         </div>
 
         <div className="mt-4">

@@ -203,7 +203,7 @@ export default function InvitationPage() {
             <h4 className="text-gold tracking-widest text-sm uppercase mb-4 font-poppins">{t('theWeddingOf')}</h4>
             <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-2 italic">{config.groomShort} <span className="text-rose text-4xl">&</span> {config.brideShort}</h1>
             <IslamicDivider />
-            <p className="mb-10 mt-6 text-cream/80 font-poppins text-sm md:text-base">
+            <p className="mb-10 mt-6 text-cream opacity-80 font-poppins text-sm md:text-base">
               {t('dear')} Bapak/Ibu/Saudara/i,
               <br />
               <strong className="block text-2xl mt-4 mb-2 text-gold truncate max-w-xs mx-auto border-b border-gold/40 pb-2">
@@ -296,7 +296,7 @@ export default function InvitationPage() {
           <motion.div variants={fadeUpVariant} className="w-full">
             <IslamicDivider className="mb-8 opacity-70" />
           </motion.div>
-          <motion.p variants={fadeUpVariant} className="font-poppins text-sm md:text-base italic leading-relaxed text-cream/80 px-4">
+          <motion.p variants={fadeUpVariant} className="font-poppins text-sm md:text-base italic leading-relaxed text-cream opacity-80 px-4">
             "{config.heroQuote || "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir."}"
           </motion.p>
           {!config.heroQuote && <motion.p variants={fadeUpVariant} className="font-poppins font-bold text-gold mt-6 tracking-wider">(QS. Ar-Rum: 21)</motion.p>}
@@ -571,16 +571,16 @@ export default function InvitationPage() {
       <footer className="w-full py-16 bg-dark-green text-center border-t-4 border-gold relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }}></div>
         <div className="max-w-lg mx-auto relative z-10 px-4 flex flex-col items-center">
-          <CornerMotif position="top-left" className="text-gold/20" />
-          <CornerMotif position="top-right" className="text-gold/20" />
+          <CornerMotif position="top-left" className="text-gold opacity-20" />
+          <CornerMotif position="top-right" className="text-gold opacity-20" />
           
           <h2 className="text-5xl font-playfair text-gold italic mb-4 animate-pulse drop-shadow-md">{config.groomShort} & {config.brideShort}</h2>
           <IslamicDivider className="max-w-[200px] mb-8 opacity-60 mix-blend-screen" />
-          <p className="text-cream/80 font-poppins text-sm leading-relaxed mb-8">
+          <p className="text-cream opacity-80 font-poppins text-sm leading-relaxed mb-8">
             Terima kasih atas doa dan restu yang telah diberikan. Semoga Allah Subhanahu Wa Ta'ala senantiasa memberikan rahmat dan hidayah-Nya kepada kita semua.
           </p>
-          <div className="w-12 h-px bg-gold/50 mx-auto mb-6"></div>
-          <p className="text-gold/60 font-poppins text-xs tracking-widest uppercase">&copy; {new Date().getFullYear()} Build with Love. All Rights Reserved.</p>
+          <div className="w-12 h-px bg-gold opacity-50 mx-auto mb-6"></div>
+          <p className="text-gold opacity-60 font-poppins text-xs tracking-widest uppercase">&copy; {new Date().getFullYear()} Build with Love. All Rights Reserved.</p>
         </div>
       </footer>
     </div>

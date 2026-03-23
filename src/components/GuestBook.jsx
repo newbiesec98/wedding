@@ -57,7 +57,7 @@ export default function GuestBook({ guestName }) {
     <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-auto overflow-hidden border border-gold/20">
       <div className="bg-gradient-to-r from-dark-green to-[#1A3A2A] py-6 px-8 text-center text-white">
         <h3 className="text-3xl font-playfair mb-2">{t('guestBook')}</h3>
-        <p className="font-poppins text-sm text-gold/80">{t('guestBookIntro')}</p>
+        <p className="font-poppins text-sm text-gold opacity-80">{t('guestBookIntro')}</p>
       </div>
 
       <div className="p-8">

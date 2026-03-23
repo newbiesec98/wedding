@@ -9,34 +9,6 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
       <div>
         <h2 className="text-2xl font-playfair text-dark-green mb-4 border-b pb-2">Data Mempelai</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Wanita */}
-          <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
-            <h3 className="font-semibold text-gray-700">Mempelai Wanita</h3>
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Nama Panggilan</label>
-              <input type="text" name="brideShort" value={formData.brideShort || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Nama Lengkap</label>
-              <input type="text" name="brideFull" value={formData.brideFull || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Nama Orang Tua</label>
-              <input type="text" name="parentBride" value={formData.parentBride || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
-            </div>
-            <div>
-                <label className="block text-sm text-gray-600 mb-1">Username IG</label>
-                <input type="text" name="igBride" value={formData.igBride || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Foto Mempelai Wanita - Upload File</label>
-              <div className="mb-2">
-                 <ImageUploadAndCrop aspect={3/4} onUploadSuccess={(url) => handleChange({ target: { name: 'bridePhoto', value: url } })} />
-              </div>
-              <input type="text" name="bridePhoto" value={formData.bridePhoto || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm bg-white focus:ring-gold focus:border-gold outline-none placeholder-gray-300" placeholder="https://... atau gunakan Upload File" />
-            </div>
-          </div>
-
           {/* Pria */}
           <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
             <h3 className="font-semibold text-gray-700">Mempelai Pria</h3>
@@ -62,6 +34,34 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
                  <ImageUploadAndCrop aspect={3/4} onUploadSuccess={(url) => handleChange({ target: { name: 'groomPhoto', value: url } })} />
               </div>
               <input type="text" name="groomPhoto" value={formData.groomPhoto || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm bg-white focus:ring-gold focus:border-gold outline-none placeholder-gray-300" placeholder="https://... atau gunakan Upload File" />
+            </div>
+          </div>
+
+          {/* Wanita */}
+          <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
+            <h3 className="font-semibold text-gray-700">Mempelai Wanita</h3>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Nama Panggilan</label>
+              <input type="text" name="brideShort" value={formData.brideShort || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Nama Lengkap</label>
+              <input type="text" name="brideFull" value={formData.brideFull || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Nama Orang Tua</label>
+              <input type="text" name="parentBride" value={formData.parentBride || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" required />
+            </div>
+            <div>
+                <label className="block text-sm text-gray-600 mb-1">Username IG</label>
+                <input type="text" name="igBride" value={formData.igBride || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none" />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Foto Mempelai Wanita - Upload File</label>
+              <div className="mb-2">
+                 <ImageUploadAndCrop aspect={3/4} onUploadSuccess={(url) => handleChange({ target: { name: 'bridePhoto', value: url } })} />
+              </div>
+              <input type="text" name="bridePhoto" value={formData.bridePhoto || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm bg-white focus:ring-gold focus:border-gold outline-none placeholder-gray-300" placeholder="https://... atau gunakan Upload File" />
             </div>
           </div>
         </div>

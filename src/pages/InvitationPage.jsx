@@ -142,7 +142,7 @@ export default function InvitationPage() {
 
   const { scrollYProgress } = useScroll();
 
-  const calendarLink = config ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Pernikahan ${config.brideShort} & ${config.groomShort}`)}&details=${encodeURIComponent(`Acara Pernikahan ${config.brideFull} & ${config.groomFull}.\n\nLokasi: ${config.akadLocation}\nAlamat: ${config.akadAddress}`)}&location=${encodeURIComponent(config.akadAddress)}&dates=${new Date(config.weddingDate).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${new Date(new Date(config.weddingDate).getTime() + 4 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d\d\d/g, "")}` : '#';
+  const calendarLink = config ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Pernikahan ${config.groomShort} & ${config.brideShort}`)}&details=${encodeURIComponent(`Acara Pernikahan ${config.groomFull} & ${config.brideFull}.\n\nLokasi: ${config.akadLocation}\nAlamat: ${config.akadAddress}`)}&location=${encodeURIComponent(config.akadAddress)}&dates=${new Date(config.weddingDate).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${new Date(new Date(config.weddingDate).getTime() + 4 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d\d\d/g, "")}` : '#';
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -174,7 +174,7 @@ export default function InvitationPage() {
   // Update Document Title dynamically
   useEffect(() => {
     if (config) {
-      const baseTitle = `Undangan Pernikahan | ${config.brideShort} & ${config.groomShort}`;
+      const baseTitle = `Undangan Pernikahan | ${config.groomShort} & ${config.brideShort}`;
       document.title = guestName ? `${baseTitle} - Kepada Yth. ${decodeURIComponent(guestName)}` : baseTitle;
     }
   }, [config, guestName]);
@@ -201,7 +201,7 @@ export default function InvitationPage() {
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             <h4 className="text-gold tracking-widest text-sm uppercase mb-4 font-poppins">{t('theWeddingOf')}</h4>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-2 italic">{config.brideShort} <span className="text-rose text-4xl">&</span> {config.groomShort}</h1>
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-2 italic">{config.groomShort} <span className="text-rose text-4xl">&</span> {config.brideShort}</h1>
             <IslamicDivider />
             <p className="mb-10 mt-6 text-cream/80 font-poppins text-sm md:text-base">
               {t('dear')} Bapak/Ibu/Saudara/i,
@@ -261,7 +261,7 @@ export default function InvitationPage() {
           بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
         </motion.div>
         <motion.h1 variants={zoomInVariant} className="text-6xl md:text-8xl font-playfair text-dark-green mt-2 mb-4 leading-tight">
-          {config.brideShort} <motion.span animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="text-rose text-5xl md:text-7xl block my-2 inline-block">&</motion.span> {config.groomShort}
+          {config.groomShort} <motion.span animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="text-rose text-5xl md:text-7xl block my-2 inline-block">&</motion.span> {config.brideShort}
         </motion.h1>
         <motion.div variants={fadeUpVariant}>
           <IslamicDivider className="max-w-md my-6" />
@@ -311,30 +311,30 @@ export default function InvitationPage() {
         </motion.div>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-          {/* Bride */}
+          {/* Groom */}
           <motion.div variants={slideInLeftVariant} className="flex flex-col items-center max-w-xs">
             <motion.div whileHover={{ scale: 1.05, rotate: -2 }} transition={{ duration: 0.4 }} className="w-48 h-48 rounded-full border-4 border-gold shadow-[0_0_20px_rgba(201,168,76,0.5)] overflow-hidden mb-6 relative">
-              <img src={config.bridePhoto || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200"} alt="Bride" className="w-full h-full object-cover filter brightness-90 transition duration-500 hover:scale-110" />
-              <div className="absolute inset-0 bg-gold/10 mix-blend-overlay"></div>
-            </motion.div>
-            <h3 className="text-3xl font-playfair font-bold text-dark-green mb-2">{config.brideFull}</h3>
-            <p className="font-poppins text-sm text-gray-600">{t('brideDaughterOf')} {config.parentBride}</p>
-            {config.igBride && <a href={`https://instagram.com/${config.igBride.replace('@', '')}`} className="mt-4 text-gold hover:text-rose transition text-sm font-poppins" target="_blank" rel="noreferrer">{config.igBride}</a>}
-          </motion.div>
-
-          <motion.div variants={zoomInVariant} className="text-5xl font-playfair text-rose opacity-60 md:mt-0">
-            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}>&amp;</motion.div>
-          </motion.div>
-
-          {/* Groom */}
-          <motion.div variants={slideInRightVariant} className="flex flex-col items-center max-w-xs">
-            <motion.div whileHover={{ scale: 1.05, rotate: 2 }} transition={{ duration: 0.4 }} className="w-48 h-48 rounded-full border-4 border-gold shadow-[0_0_20px_rgba(201,168,76,0.5)] overflow-hidden mb-6 relative">
               <img src={config.groomPhoto || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200"} alt="Groom" className="w-full h-full object-cover filter brightness-90 transition duration-500 hover:scale-110" />
               <div className="absolute inset-0 bg-gold/10 mix-blend-overlay"></div>
             </motion.div>
             <h3 className="text-3xl font-playfair font-bold text-dark-green mb-2">{config.groomFull}</h3>
             <p className="font-poppins text-sm text-gray-600">{t('groomSonOf')} {config.parentGroom}</p>
             {config.igGroom && <a href={`https://instagram.com/${config.igGroom.replace('@', '')}`} className="mt-4 text-gold hover:text-rose transition text-sm font-poppins" target="_blank" rel="noreferrer">{config.igGroom}</a>}
+          </motion.div>
+
+          <motion.div variants={zoomInVariant} className="text-5xl font-playfair text-rose opacity-60 md:mt-0">
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}>&amp;</motion.div>
+          </motion.div>
+
+          {/* Bride */}
+          <motion.div variants={slideInRightVariant} className="flex flex-col items-center max-w-xs">
+            <motion.div whileHover={{ scale: 1.05, rotate: 2 }} transition={{ duration: 0.4 }} className="w-48 h-48 rounded-full border-4 border-gold shadow-[0_0_20px_rgba(201,168,76,0.5)] overflow-hidden mb-6 relative">
+              <img src={config.bridePhoto || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200"} alt="Bride" className="w-full h-full object-cover filter brightness-90 transition duration-500 hover:scale-110" />
+              <div className="absolute inset-0 bg-gold/10 mix-blend-overlay"></div>
+            </motion.div>
+            <h3 className="text-3xl font-playfair font-bold text-dark-green mb-2">{config.brideFull}</h3>
+            <p className="font-poppins text-sm text-gray-600">{t('brideDaughterOf')} {config.parentBride}</p>
+            {config.igBride && <a href={`https://instagram.com/${config.igBride.replace('@', '')}`} className="mt-4 text-gold hover:text-rose transition text-sm font-poppins" target="_blank" rel="noreferrer">{config.igBride}</a>}
           </motion.div>
         </div>
       </Section>
@@ -574,7 +574,7 @@ export default function InvitationPage() {
           <CornerMotif position="top-left" className="text-gold/20" />
           <CornerMotif position="top-right" className="text-gold/20" />
           
-          <h2 className="text-5xl font-playfair text-gold italic mb-4 animate-pulse drop-shadow-md">{config.brideShort} & {config.groomShort}</h2>
+          <h2 className="text-5xl font-playfair text-gold italic mb-4 animate-pulse drop-shadow-md">{config.groomShort} & {config.brideShort}</h2>
           <IslamicDivider className="max-w-[200px] mb-8 opacity-60 mix-blend-screen" />
           <p className="text-cream/80 font-poppins text-sm leading-relaxed mb-8">
             Terima kasih atas doa dan restu yang telah diberikan. Semoga Allah Subhanahu Wa Ta'ala senantiasa memberikan rahmat dan hidayah-Nya kepada kita semua.

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaMusic, FaPause } from 'react-icons/fa';
 
 export default function MusicToggle({ src }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
 
   useEffect(() => {

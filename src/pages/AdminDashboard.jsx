@@ -13,6 +13,7 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [visitCount, setVisitCount] = useState(0);
   const itemsPerPage = 10;
   
   const navigate = useNavigate();
@@ -24,11 +25,24 @@ export default function AdminDashboard() {
       return;
     }
     loadGuests();
+    loadVisitCount();
   }, [navigate]);
 
   const loadGuests = async () => {
     const data = await getGuests();
     setGuests(data);
+  };
+
+  const loadVisitCount = async () => {
+    try {
+      const res = await fetch('/api/visit');
+      if (res.ok) {
+        const data = await res.json();
+        setVisitCount(data.visitCount || 0);
+      }
+    } catch (e) {
+      console.error('Failed to load visit count', e);
+    }
   };
 
   const handleLogout = () => {
@@ -129,7 +143,7 @@ Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8 px-4 sm:px-0">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-4 mb-8 px-4 sm:px-0">
           <div className="bg-white overflow-hidden shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
               <dt className="text-sm font-medium text-gray-500 truncate">Total Tamu</dt>
@@ -146,6 +160,12 @@ Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
             <div className="px-4 py-5 sm:p-6">
               <dt className="text-sm font-medium text-gray-500 truncate">Tidak Hadir</dt>
               <dd className="mt-1 text-3xl font-semibold text-red-600">{tidakHadirCount}</dd>
+            </div>
+          </div>
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="text-sm font-medium text-gray-500 truncate">Total Kunjungan</dt>
+              <dd className="mt-1 text-3xl font-semibold text-blue-600">{visitCount}</dd>
             </div>
           </div>
         </div>

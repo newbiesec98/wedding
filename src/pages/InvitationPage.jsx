@@ -164,6 +164,9 @@ export default function InvitationPage() {
         setGalleries(galRes.ok ? await galRes.json() : []);
         setStories(stRes.ok ? await stRes.json() : []);
         setGifts(gfRes.ok ? await gfRes.json() : []);
+        
+        // Track Visit
+        fetch('/api/visit', { method: 'POST' }).catch(console.error);
       } catch (e) {
         console.error("Failed to load invitation data", e);
       }
@@ -362,7 +365,7 @@ export default function InvitationPage() {
                 <h3 className="text-3xl font-playfair text-dark-green mb-4">{t('akadNikah')}</h3>
                 <p className="font-poppins text-gray-600 mb-2 font-semibold">{config.dateString}</p>
                 <p className="font-poppins text-gray-500 mb-6">
-                  {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} WIB` : config.akadTime}
+                  {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.akadTime} ${config.timeZone || 'WIB'}`}
                 </p>
                 <p className="font-poppins text-sm text-gray-700 leading-relaxed font-semibold">{config.akadLocation}</p>
                 <p className="font-poppins text-sm text-gray-500 italic mt-1 flex-grow">{config.akadAddress}</p>
@@ -387,7 +390,7 @@ export default function InvitationPage() {
                   <div className="flex flex-col items-center text-center">
                     <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-gold/30 pb-2 inline-block">{t('akadNikah')}</h4>
                     <p className="font-poppins text-gray-500 mb-4 px-4 bg-white/50 py-2 rounded-full border border-gold/10">
-                      {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} WIB` : config.akadTime}
+                      {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.akadTime} ${config.timeZone || 'WIB'}`}
                     </p>
                     <p className="font-poppins text-sm text-gray-700 leading-relaxed font-semibold">{config.akadLocation}</p>
                     <p className="font-poppins text-sm text-gray-500 italic mt-1 flex-grow">{config.akadAddress}</p>
@@ -397,7 +400,7 @@ export default function InvitationPage() {
                   <div className="flex flex-col items-center text-center pt-8 border-t border-gold/20 md:border-0 md:pt-0">
                     <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-light-green/30 pb-2 inline-block">{t('resepsi')}</h4>
                     <p className="font-poppins text-gray-500 mb-4 px-4 bg-white/50 py-2 rounded-full border border-gold/10">
-                      {config.resepsiTimeStart ? `${config.resepsiTimeStart} - ${config.resepsiTimeEnd || 'Selesai'} WIB` : config.resepsiTime}
+                      {config.resepsiTimeStart ? `${config.resepsiTimeStart} - ${config.resepsiTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.resepsiTime} ${config.timeZone || 'WIB'}`}
                     </p>
                     <p className="font-poppins text-sm text-gray-700 leading-relaxed font-semibold">{config.resepsiLocation}</p>
                     <p className="font-poppins text-sm text-gray-500 italic mt-1 flex-grow">{config.resepsiAddress}</p>

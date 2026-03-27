@@ -152,6 +152,33 @@ app.post('/api/config', authenticateToken, async (req, res) => {
   }
 });
 
+// === VISIT COUNT API ===
+app.post('/api/visit', async (req, res) => {
+  try {
+    const existing = await db.select().from(config).where(eq(config.key, 'visitCount'));
+    let count = 1;
+    if (existing.length > 0) {
+      count = parseInt(existing[0].value || '0', 10) + 1;
+      await db.update(config).set({ value: String(count) }).where(eq(config.key, 'visitCount'));
+    } else {
+      await db.insert(config).values({ key: 'visitCount', value: '1' });
+    }
+    res.json({ visitCount: count });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/visit', async (req, res) => {
+  try {
+    const existing = await db.select().from(config).where(eq(config.key, 'visitCount'));
+    let count = existing.length > 0 ? parseInt(existing[0].value || '0', 10) : 0;
+    res.json({ visitCount: count });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // === GALLERIES API ===
 app.get('/api/galleries', async (req, res) => {
   try {

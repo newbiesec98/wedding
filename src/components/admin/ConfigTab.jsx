@@ -130,12 +130,22 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
       <div>
         <h2 className="text-2xl font-playfair text-dark-green mb-4 border-b pb-2 mt-8">Detail Acara & Lokasi</h2>
         
-        <div className="mb-6 bg-gold/10 p-4 rounded-lg border border-gold/30">
-          <label className="block text-sm font-semibold text-dark-green mb-2">Tipe Penyelenggaraan Acara</label>
-          <select name="eventMode" value={formData.eventMode || 'same_day'} onChange={handleChange} className="w-full border p-2 rounded-md bg-white focus:ring-gold outline-none text-sm">
-            <option value="same_day">Akad Nikah & Resepsi (Hari yang Sama)</option>
-            <option value="akad_only">Akad Nikah Saja</option>
-          </select>
+        <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-gold/10 p-4 rounded-lg border border-gold/30">
+            <label className="block text-sm font-semibold text-dark-green mb-2">Tipe Penyelenggaraan Acara</label>
+            <select name="eventMode" value={formData.eventMode || 'same_day'} onChange={handleChange} className="w-full border p-2 rounded-md bg-white focus:ring-gold outline-none text-sm">
+              <option value="same_day">Akad Nikah & Resepsi (Hari yang Sama)</option>
+              <option value="akad_only">Akad Nikah Saja</option>
+            </select>
+          </div>
+          <div className="bg-gold/10 p-4 rounded-lg border border-gold/30">
+            <label className="block text-sm font-semibold text-dark-green mb-2">Zona Waktu (Time Zone)</label>
+            <select name="timeZone" value={formData.timeZone || 'WIB'} onChange={handleChange} className="w-full border p-2 rounded-md bg-white focus:ring-gold outline-none text-sm">
+              <option value="WIB">WIB</option>
+              <option value="WITA">WITA</option>
+              <option value="WIT">WIT</option>
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

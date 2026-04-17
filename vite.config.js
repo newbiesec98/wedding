@@ -9,7 +9,7 @@ export default defineConfig({
     allowedHosts: ['sopian.nurulaitam.my.id', 'sofianhariyanti.nurulaitam.my.id'],
     proxy: {
       '/api': {
-        target: 'http://localhost:3003',
+        target: 'http://localhost:3001',
         changeOrigin: true
       }
     }

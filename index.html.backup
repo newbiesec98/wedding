@@ -1,14 +1,10 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD
-    <title>Undangan Pernikahan</title>
-=======
-    <title id="page-title">Loading...</title>
->>>>>>> 128f549212e0622146a584d48cb5698325eabd7d
+    <title>Undangan Pernikahan | Sofian & Yanti</title>
   </head>
   <body>
     <div id="root"></div>

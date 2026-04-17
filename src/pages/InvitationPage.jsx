@@ -362,7 +362,7 @@ export default function InvitationPage() {
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(201,168,76,0.3)] border border-gold/30 relative z-10">
                   <FaCalendarCheck className="text-gold text-2xl" />
                 </div>
-                <h3 className="text-3xl font-playfair text-dark-green mb-4">{t('akadNikah')}</h3>
+                <h3 className="text-3xl font-playfair text-dark-green mb-4">{config.akadTitle || t('akadNikah')}</h3>
                 <p className="font-poppins text-gray-600 mb-2 font-semibold">{config.dateString}</p>
                 <p className="font-poppins text-gray-500 mb-6">
                   {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.akadTime} ${config.timeZone || 'WIB'}`}
@@ -380,7 +380,7 @@ export default function InvitationPage() {
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(201,168,76,0.3)] border border-gold/30 relative z-10">
                   <FaCalendarCheck className="text-gold text-2xl" />
                 </div>
-                <h3 className="text-4xl font-playfair text-dark-green mb-2 relative z-10 text-center">Akad & Resepsi</h3>
+                <h3 className="text-4xl font-playfair text-dark-green mb-2 relative z-10 text-center">{config.akadTitle || t('akadNikah')} & {config.resepsiTitle || t('resepsi')}</h3>
                 <p className="font-poppins text-gray-600 mb-10 font-semibold relative z-10 text-center">{config.dateString}</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
@@ -388,7 +388,7 @@ export default function InvitationPage() {
 
                   {/* Akad Nikah */}
                   <div className="flex flex-col items-center text-center">
-                    <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-gold/30 pb-2 inline-block">{t('akadNikah')}</h4>
+                    <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-gold/30 pb-2 inline-block">{config.akadTitle || t('akadNikah')}</h4>
                     <p className="font-poppins text-gray-500 mb-4 px-4 bg-white/50 py-2 rounded-full border border-gold/10">
                       {config.akadTimeStart ? `${config.akadTimeStart} - ${config.akadTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.akadTime} ${config.timeZone || 'WIB'}`}
                     </p>
@@ -398,7 +398,7 @@ export default function InvitationPage() {
 
                   {/* Resepsi */}
                   <div className="flex flex-col items-center text-center pt-8 border-t border-gold/20 md:border-0 md:pt-0">
-                    <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-light-green/30 pb-2 inline-block">{t('resepsi')}</h4>
+                    <h4 className="text-2xl font-playfair text-dark-green mb-4 border-b border-light-green/30 pb-2 inline-block">{config.resepsiTitle || t('resepsi')}</h4>
                     <p className="font-poppins text-gray-500 mb-4 px-4 bg-white/50 py-2 rounded-full border border-gold/10">
                       {config.resepsiTimeStart ? `${config.resepsiTimeStart} - ${config.resepsiTimeEnd || 'Selesai'} ${config.timeZone || 'WIB'}` : `${config.resepsiTime} ${config.timeZone || 'WIB'}`}
                     </p>

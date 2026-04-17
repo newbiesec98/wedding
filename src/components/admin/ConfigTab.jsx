@@ -162,7 +162,11 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
         <div className={`grid grid-cols-1 ${formData.eventMode === 'akad_only' ? '' : 'md:grid-cols-2'} gap-6 mt-6`}>
           {/* Akad */}
           <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
-            <h3 className="font-semibold text-gray-700">Akad Nikah</h3>
+            <h3 className="font-semibold text-gray-700">Acara 1 (Akad Nikah)</h3>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Nama Acara</label>
+              <input type="text" name="akadTitle" value={formData.akadTitle || 'Akad Nikah'} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Akad Nikah" />
+            </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm text-gray-600 mb-1">Pukul Mulai</label>
@@ -187,7 +191,11 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
           {/* Resepsi (Hanya Tampil Jika Bukan "Akad Saja") */}
           {formData.eventMode !== 'akad_only' && (
             <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
-              <h3 className="font-semibold text-gray-700">Resepsi</h3>
+              <h3 className="font-semibold text-gray-700">Acara 2 (Resepsi)</h3>
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">Nama Acara</label>
+                <input type="text" name="resepsiTitle" value={formData.resepsiTitle || 'Resepsi'} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Resepsi / Ngunduh Mantu" />
+              </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm text-gray-600 mb-1">Pukul Mulai</label>

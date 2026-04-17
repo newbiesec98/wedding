@@ -6,7 +6,7 @@ import CountdownTimer from '../components/CountdownTimer';
 import RSVPForm from '../components/RSVPForm';
 import GuestBook from '../components/GuestBook';
 import MusicToggle from '../components/MusicToggle';
-import { fetchConfig } from '../data/configStore';
+import { fetchConfig, generateTitle } from '../data/configStore';
 import { useLanguage } from '../utils/LanguageContext';
 
 
@@ -142,7 +142,7 @@ export default function InvitationPage() {
 
   const { scrollYProgress } = useScroll();
 
-  const calendarLink = config ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Pernikahan ${config.groomShort} & ${config.brideShort}`)}&details=${encodeURIComponent(`Acara Pernikahan ${config.groomFull} & ${config.brideFull}.\n\nLokasi: ${config.akadLocation}\nAlamat: ${config.akadAddress}`)}&location=${encodeURIComponent(config.akadAddress)}&dates=${new Date(config.weddingDate).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${new Date(new Date(config.weddingDate).getTime() + 4 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d\d\d/g, "")}` : '#';
+  const calendarLink = config ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Pernikahan ${config.groomFull} & ${config.brideFull}`)}&details=${encodeURIComponent(`Acara Pernikahan ${config.groomFull} & ${config.brideFull}.\n\nLokasi: ${config.akadLocation}\nAlamat: ${config.akadAddress}`)}&location=${encodeURIComponent(config.akadAddress)}&dates=${new Date(config.weddingDate).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${new Date(new Date(config.weddingDate).getTime() + 4 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d\d\d/g, "")}` : '#';
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -177,8 +177,8 @@ export default function InvitationPage() {
   // Update Document Title dynamically
   useEffect(() => {
     if (config) {
-      const baseTitle = `Undangan Pernikahan | ${config.groomShort} & ${config.brideShort}`;
-      document.title = guestName ? `${baseTitle} - Kepada Yth. ${decodeURIComponent(guestName)}` : baseTitle;
+      const dynamicTitle = generateTitle(config);
+      document.title = guestName ? `${dynamicTitle} - Kepada Yth. ${decodeURIComponent(guestName)}` : dynamicTitle;
     }
   }, [config, guestName]);
 
@@ -409,6 +409,35 @@ export default function InvitationPage() {
               </motion.div>
             )}
           </div>
+
+
+          {/* Custom Events */}
+          {config.customEvents && config.customEvents.length > 0 && (
+            <Section className="w-full bg-white relative py-24" useStagger={true}>
+              <div className="max-w-4xl mx-auto px-4 text-center">
+                <motion.h2 variants={fadeUpVariant} className="text-4xl font-playfair text-dark-green mb-6 text-center">Acara Lainnya</motion.h2>
+                <motion.p variants={fadeUpVariant} className="text-gray-500 font-poppins text-sm mb-16 max-w-xl mx-auto text-center">Acara selain Akad & Resepsi yang telah dijadwalkan.</motion.p>
+
+                {config.customEvents.map((event, index) => (
+                  <motion.div key={index} variants={fadeUpVariant} className="bg-cream rounded-3xl p-8 border border-gold/20 shadow-xl hover:-translate-y-2 transition-transform duration-500 hover:shadow-2xl mb-8 max-w-2xl mx-auto w-full relative overflow-hidden">
+                    <div className="absolute -right-10 -bottom-10 w-64 h-64 opacity-[0.04] pointer-events-none">
+                      <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 60, ease: "linear" }} className="w-full h-full">
+                        <IslamicStar className="w-full h-full text-dark-green" />
+                      </motion.div>
+                    </div>
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(201,168,76,0.3)] border border-gold/30 relative z-10">
+                      <FaCalendarCheck className="text-gold text-2xl" />
+                    </div>
+                    <h3 className="text-2xl font-playfair text-dark-green mb-4 text-center">{event.mode}</h3>
+                    <p className="font-poppins text-gray-500 mb-2 font-semibold text-center">{event.date}</p>
+                    <p className="font-poppins text-gray-500 mb-4 text-center">{event.time}</p>
+                    <p className="font-poppins text-sm text-gray-700 leading-relaxed font-semibold text-center">{event.location}</p>
+                    {event.description && <p className="font-poppins text-sm text-gray-500 italic mt-1 text-center flex-grow">{event.description}</p>}
+                  </motion.div>
+                ))}
+              </div>
+            </Section>
+          )}
 
           {/* Maps */}
           <motion.div variants={fadeUpVariant} className="mt-16 w-full h-[400px] rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] border-4 border-white">

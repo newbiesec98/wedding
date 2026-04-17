@@ -1,6 +1,8 @@
 import { fetchWithAuth } from '../utils/apiAuth';
 
 const API_URL = '/api/config';
+// Force Vite HMR reload
+
 
 const defaultConfig = {
   brideShort: 'Yanti',
@@ -26,9 +28,6 @@ const defaultConfig = {
   themeDarkGreen: '#1A3A2A',
   themeCream: '#FDF6EC',
   themeRose: '#B76E79',
-
-  title: '',
-  customEvents: '[]',
 };
 
 export const applyTheme = (configData) => {
@@ -39,31 +38,8 @@ export const applyTheme = (configData) => {
   if (configData.themeRose) document.documentElement.style.setProperty('--color-rose', configData.themeRose);
 };
 
-export const generateTitle = (configData) => {
-  if (configData.title) return configData.title;
-
-  const groom = configData.groomFull || configData.groomShort || 'Mempelai Pria';
-  const bride = configData.brideFull || configData.brideShort || 'Mempelai Wanita';
-
-  return `Undangan Pernikahan | ${groom} & ${bride}`;
-};
-
-export const parseCustomEvents = (customEvents) => {
-  if (!customEvents) return [];
-  try {
-    if (typeof customEvents === 'string') {
-      return JSON.parse(customEvents) || [];
-    }
-    if (Array.isArray(customEvents)) {
-      return customEvents;
-    }
-    return [];
-  } catch (e) {
-    console.error('Failed to parse customEvents:', e);
-    return [];
-  }
-};
-
+// We need an async function now, but since we had `getConfig()` as sync before,
+// we will fetch and return correctly. However, we'll fetch asynchronously.
 let cachedConfig = null;
 
 export const fetchConfig = async () => {

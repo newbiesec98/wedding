@@ -150,37 +150,7 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              
-      {/* Custom Events */}
-      <div>
-        <h2 className="text-2xl font-playfair text-dark-green mb-4 border-b pb-2 mt-8">Acara Custom (Opsional)</h2>
-        <p className="text-sm text-gray-500 mb-4">
-          Jika Anda punya acara selain Akad & Resepsi (contoh: Makan Siang, Pesta Kebersamaan), masukkan di sini.
-          <br />
-          <span className="font-mono text-xs bg-gray-100 p-1 rounded">Format: <b>Mode, Tanggal, Waktu, Lokasi, Deskripsi</b> (pisahkan dengan koma)</span>
-          <br />
-          <span className="text-xs">Contoh: "Makan Siang, 12 Desember 2026, 15.00 - 16.00, Hotel XYZ, Diikuti doa keluarga besar"</span>
-          <br />
-          <span className="text-xs">Contoh: "Pesta Kebersamaan, 13 Desember 2026, 09.00 - Selesai, Balai Desa Bina Makmur, Buka bersama"</span>
-        </p>
-        <div>
-          <label className="block text-sm text-gray-600 mb-2">Daftar Acara Custom (Tulis satu acara per baris)</label>
-          <textarea 
-            name="customEvents" 
-            value={formData.customEvents || "[]"} 
-            onChange={handleChange} 
-            rows="6" 
-            className="w-full border rounded-md p-3 text-sm focus:ring-gold focus:border-gold outline-none font-mono text-xs resize-none" 
-            placeholder="Mode, Tanggal, Waktu, Lokasi, Deskripsi
-Contoh: Makan Siang, 12 Desember 2026, 15.00, Hotel XYZ, Makan bersama keluarga"
-          />
-        </div>
-        <p className="text-xs text-gray-400 mt-2">
-          ⚠️ Jika form diisi, acara ini akan ditampilkan di halaman undangan. Jika dikosongkan, hanya Akad & Resepsi yang tampil.
-        </p>
-      </div>
-
-<label className="block text-sm text-gray-600 mb-1">Tanggal Acara (Date Picker) & Waktu Hitung Mundur</label>
+              <label className="block text-sm text-gray-600 mb-1">Tanggal Acara (Date Picker) & Waktu Hitung Mundur</label>
               <input type="datetime-local" name="weddingDate" value={formData.weddingDate || ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold focus:border-gold outline-none bg-white" required />
             </div>
             <div>

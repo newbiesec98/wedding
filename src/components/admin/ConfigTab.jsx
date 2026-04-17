@@ -165,7 +165,7 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
             <h3 className="font-semibold text-gray-700">Acara 1 (Akad Nikah)</h3>
             <div>
               <label className="block text-sm text-gray-600 mb-1">Nama Acara</label>
-              <input type="text" name="akadTitle" value={formData.akadTitle || 'Akad Nikah'} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Akad Nikah" />
+              <input type="text" name="akadTitle" value={formData.akadTitle !== undefined ? formData.akadTitle : ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Akad Nikah" />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
@@ -194,7 +194,7 @@ export default function ConfigTab({ formData, handleChange, handleSave, isSaved 
               <h3 className="font-semibold text-gray-700">Acara 2 (Resepsi)</h3>
               <div>
                 <label className="block text-sm text-gray-600 mb-1">Nama Acara</label>
-                <input type="text" name="resepsiTitle" value={formData.resepsiTitle || 'Resepsi'} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Resepsi / Ngunduh Mantu" />
+                <input type="text" name="resepsiTitle" value={formData.resepsiTitle !== undefined ? formData.resepsiTitle : ''} onChange={handleChange} className="w-full border rounded-md p-2 text-sm focus:ring-gold outline-none bg-white" placeholder="Resepsi / Ngunduh Mantu" />
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>

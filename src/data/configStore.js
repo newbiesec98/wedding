@@ -5,10 +5,10 @@ const API_URL = '/api/config';
 
 
 const defaultConfig = {
-  brideShort: 'Nadia',
-  groomShort: 'Farras',
-  brideFull: 'Nadia Salsabila',
-  groomFull: 'Farras Fauzan',
+  brideShort: 'Yanti',
+  groomShort: 'Sofian',
+  brideFull: 'Haryanti',
+  groomFull: 'Sofian Hadi',
   parentBride: 'Bapak Fulan & Ibu Fulanah',
   parentGroom: 'Bapak Alan & Ibu Alana',
   igBride: '@instagram_nadia',

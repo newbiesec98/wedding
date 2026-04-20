@@ -52,18 +52,36 @@ export const generateTitle = (configData) => {
 
 export const parseCustomEvents = (customEvents) => {
   if (!customEvents) return [];
+  if (Array.isArray(customEvents)) return customEvents;
   try {
     if (typeof customEvents === 'string') {
-      return JSON.parse(customEvents) || [];
+      try {
+        const parsed = JSON.parse(customEvents);
+        if (Array.isArray(parsed)) return parsed;
+      } catch (e) {
+        // Fallback to CSV format
+      }
+      const lines = customEvents.split('\n');
+      const events = [];
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        const parts = line.split(',').map(p => p.trim());
+        if (parts.length >= 4) {
+          events.push({
+            mode: parts[0] || '',
+            date: parts[1] || '',
+            time: parts[2] || '',
+            location: parts[3] || '',
+            description: parts.slice(4).join(', ') || ''
+          });
+        }
+      }
+      return events;
     }
-    if (Array.isArray(customEvents)) {
-      return customEvents;
-    }
-    return [];
   } catch (e) {
     console.error('Failed to parse customEvents:', e);
-    return [];
   }
+  return [];
 };
 
 let cachedConfig = null;

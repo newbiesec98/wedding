@@ -6,7 +6,7 @@ import CountdownTimer from '../components/CountdownTimer';
 import RSVPForm from '../components/RSVPForm';
 import GuestBook from '../components/GuestBook';
 import MusicToggle from '../components/MusicToggle';
-import { fetchConfig, generateTitle } from '../data/configStore';
+import { fetchConfig, generateTitle, parseCustomEvents } from '../data/configStore';
 import { useLanguage } from '../utils/LanguageContext';
 
 
@@ -412,13 +412,13 @@ export default function InvitationPage() {
 
 
           {/* Custom Events */}
-          {config.customEvents && config.customEvents.length > 0 && (
+          {parseCustomEvents(config.customEvents).length > 0 && (
             <Section className="w-full bg-white relative py-24" useStagger={true}>
               <div className="max-w-4xl mx-auto px-4 text-center">
                 <motion.h2 variants={fadeUpVariant} className="text-4xl font-playfair text-dark-green mb-6 text-center">Acara Lainnya</motion.h2>
                 <motion.p variants={fadeUpVariant} className="text-gray-500 font-poppins text-sm mb-16 max-w-xl mx-auto text-center">Acara selain Akad & Resepsi yang telah dijadwalkan.</motion.p>
 
-                {config.customEvents.map((event, index) => (
+                {parseCustomEvents(config.customEvents).map((event, index) => (
                   <motion.div key={index} variants={fadeUpVariant} className="bg-cream rounded-3xl p-8 border border-gold/20 shadow-xl hover:-translate-y-2 transition-transform duration-500 hover:shadow-2xl mb-8 max-w-2xl mx-auto w-full relative overflow-hidden">
                     <div className="absolute -right-10 -bottom-10 w-64 h-64 opacity-[0.04] pointer-events-none">
                       <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 60, ease: "linear" }} className="w-full h-full">
